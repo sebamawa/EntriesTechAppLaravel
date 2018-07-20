@@ -18,7 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name', 128);
             $table->string('slug', 128)->unique(); //url amigable
             $table->mediumText('body')->nullable();
-            $table->binary('image'); //campo para imagen. Se guarda como blob en la bd
+            $table->string('image_path', 128)->nullable();
+            $table->binary('image')->nullable();//campo para imagen. Se guarda como blob en la bd
 
             //$table->timestamps();
         });

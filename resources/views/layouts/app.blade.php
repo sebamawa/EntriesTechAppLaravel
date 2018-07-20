@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!--<script src="{{ asset('js/app.js') }}"></script>-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -75,5 +75,13 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Jquery y bootstrap -->
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <!-- yield para cargar en una section javascript personalizado (desde una plantilla que extienda esta).
+     Se usa en forms de Category y Entry -->
+    @yield('scripts')
 </body>
 </html>

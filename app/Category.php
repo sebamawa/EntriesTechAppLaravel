@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = [ //campos para el form
-        'name', 'slug', 'body', 'image'
+        'name', 'slug', 'body', 'image_path'
     ];
+
+    public $timestamps = false;
 
     //relations
 
