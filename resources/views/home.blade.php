@@ -14,7 +14,22 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <div class="row"> <!-- Agregado: Items del dashboard (Entradas y Categorias) -->
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="body">
+                                    <a href="#"><h3>Entradas</h3></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="body">
+                                    <a href="{{ route('categories.index') }}"><h3>Categorías</h3></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{--You are logged in!--}}
                 </div>
             </div>
         </div>

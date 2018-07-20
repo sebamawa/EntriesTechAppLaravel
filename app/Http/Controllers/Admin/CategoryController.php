@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
+//request (validacion) para el modelo
+use App\Http\Requests\CategoryStoreRequest;
+
 class CategoryController extends Controller
 {
     /**
@@ -18,7 +21,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         //seguridad para TODOS los metodos (solo se permite acceso a usurio logueado)
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -44,10 +47,11 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) //se inyecta el objeto $request
+    public function store(CategoryStoreRequest $request) //se validan campos con request (inyectado)
     {
+
         //objeto creado con atributos de fillable del modelo Category (asignacion en masa)
-        //se guarda el registro correspondiente en la bd
+        //Se guarda el registro correspondiente en la bd
         $category = Category::create($request->all());
 
         //manejo de imagen
@@ -70,7 +74,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return "show()";
     }
 
     /**
@@ -81,7 +85,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit()";
     }
 
     /**
