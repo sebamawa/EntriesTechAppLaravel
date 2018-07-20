@@ -17,7 +17,7 @@
     {{ Form::file('image_path') }}
 </div>
 <div class="form-group">
-    {{ Form::submit('Guardar', ['class'=>'btn btn-sm btn-primary']) }}
+    {{ Form::submit('Guardar', ['class'=>'btn btn-primary']) }}
 </div>
 
 @section('scripts')

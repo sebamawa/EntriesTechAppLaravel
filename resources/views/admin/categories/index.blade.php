@@ -6,7 +6,7 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-header">
-                    Lista de categorías
+                    <strong>Lista de categorías</strong>
                     <a href="{{ route('categories.create') }}" class="btn btn-primary float-right">
                         Crear
                     </a>

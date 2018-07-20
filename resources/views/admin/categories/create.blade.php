@@ -6,7 +6,7 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-header">
-                    Crear Categoría
+                    <strong>Crear Categoría</strong>
                 </div>
                 <div class="card-body">
                     {!! Form::open(['route'=>'categories.store', 'files'=>true]) !!}
