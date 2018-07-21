@@ -58,7 +58,8 @@ class CategoryController extends Controller
 
         if ($request->file('image_path')) {
             $path = Storage::disk('public')->put('images_upload', $request->file('image_path'));
-            $category->fill(['image_path'=>asset($path)])->save();
+            //$category->fill(['image_path'=>asset($path)])->save();
+            $category->fill(['image_path'=>$path])->save();
         } else {
             return "NO se envio una imagen";
         }

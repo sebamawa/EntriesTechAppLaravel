@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}">
 
     <!-- estilo personalizado para imagen de fondo -->
     <style>
@@ -68,7 +69,7 @@
                             </li>
                         @else {{-- usuario logueado --}}
 
-                            {{-- botones en el header para dashboard, categorias y entradas --}}
+                            {{-- links en el header para dashboard, categorias y entradas --}}
                             <li class="nav-item"><a class="nav-link" href="{{ route('home') }}"><strong>Dashboard</strong></a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">Categorías</a></li>
                             {{--==========================================================================--}}
