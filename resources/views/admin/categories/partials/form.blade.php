@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     {{ Form::label('body', 'Descripción') }}
-    {{ Form::textarea('body', null, ['class'=>'form-control']) }}
+    {{ Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) }}
 </div>
 {{-- imagen para la categoria --}}
 <div class="form-group">
