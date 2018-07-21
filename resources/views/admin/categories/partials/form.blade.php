@@ -15,9 +15,10 @@
 <div class="form-group">
     {{ Form::label('image_path', 'Imagen') }}
     {{ Form::file('image_path') }}
+    <img id="image_to_upload" src="#" class="float-center" alt="imagen" width="100px" height="100px"> <!-- para previsualizar imagen seleccionada (mas js) -->
 </div>
 <div class="form-group">
-    {{ Form::submit('Guardar', ['class'=>'btn btn-primary']) }}
+    {{ Form::submit('Guardar') }}
 </div>
 
 @section('scripts')
@@ -32,6 +33,23 @@
                     $("#slug").val(text);
                 }
             });
+
+            //codigo para visualizar la imagen linkeada en el campo file (https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded)
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#image_to_upload').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image_path").change(function() {
+                readURL(this);
+            });
+
         });
     </script>
 @endsection
