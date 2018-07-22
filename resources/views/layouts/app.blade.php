@@ -97,6 +97,42 @@
             </div>
         </nav>
 
+        {{-- Agregado: alerto para mostrar mensajes en el response desde el server --}}
+        @if(session('info')) {{-- info es parametro (clave) de sesion flash --}}
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-success alert-dismissible fade show">
+                            {{ session('info') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        {{-- Agregado: para mostrar errores. $errors es una variable global --}}
+        @if(count($errors))
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <main class="py-4">
             @yield('content')
         </main>

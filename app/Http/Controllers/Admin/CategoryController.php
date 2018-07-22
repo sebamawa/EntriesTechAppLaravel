@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        //seguridad para TODOS los metodos (solo se permite acceso a usurio logueado)
+        //seguridad para TODOS los metodos (solo se permite acceso a usuario logueado)
         $this->middleware('auth');
     }
 
@@ -58,13 +58,12 @@ class CategoryController extends Controller
 
         if ($request->file('image_path')) {
             $path = Storage::disk('public')->put('images_upload', $request->file('image_path'));
-            //$category->fill(['image_path'=>asset($path)])->save();
-            $category->fill(['image_path'=>$path])->save();
-        } else {
-            return "NO se envio una imagen";
+            //$category->fill(['image_path'=>asset($path)])->save(); //asset($path) tiene ruta absoluta
+            $category->fill(['image_path'=>$path])->save(); //$path tiene ruta relativa
         }
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')
+            ->with('info', "Categoría creada con éxito"); //guarda mensaje en response (en sesion flash)
     }
 
     /**
@@ -75,7 +74,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        return "show()";
+        $category = Category::find($id);
+
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -86,7 +87,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return "edit()";
+        $category = Category::find($id);
+
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -109,6 +112,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //$category =
+        Category::find($id)->delete();
+        return redirect()->route('categories.index') //con return view da error por al eliminacion previa de la categoria
+            ->with('info', 'Eliminado correctamente');
+
+        /*
+         * Nota: La diferencia entre return view() y redirect() es
+         * view() es la respuesta a una uri especifica
+         * redirect() cambia la uri, invocando un metodo del controlador (en este
+         * caso llama a index())
+         * */
     }
 }

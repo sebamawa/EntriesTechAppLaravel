@@ -1,11 +1,11 @@
 <div class="form-group">
-    {{ Form::label('name', 'Nombre de la categoría') }}
+    {{ Form::label('name', 'Nombre de la categoría (*)') }}
     {{-- null indica que el campo no tendra contenido --}}
-    {{ Form::text('name', null, ['class'=>'form-control', 'id'=>'name']) }}
+    {{ Form::text('name', null, ['class'=>'form-control', 'id'=>'name', 'placeholder'=>'Name']) }}
 </div>
 <div class="form-group">
-    {{ Form::label('slug', 'URL Amigable') }}
-    {{ Form::text('slug', null, ['class'=>'form-control', 'id'=>'slug']) }}
+    {{ Form::label('slug', 'URL Amigable (*)') }}
+    {{ Form::text('slug', null, ['class'=>'form-control', 'id'=>'slug', 'placeholder'=>'Slug']) }}
 </div>
 <div class="form-group">
     {{ Form::label('body', 'Descripción') }}
@@ -15,10 +15,11 @@
 <div class="form-group">
     {{ Form::label('image_path', 'Imagen') }}
     {{ Form::file('image_path') }}
-    <img id="image_to_upload" src="#" class="float-center" alt="imagen" width="100px" height="100px"> <!-- para previsualizar imagen seleccionada (mas js) -->
+    <button type="button" id="btn_deseleccionar_img">Deseleccionar</button>
+    <img id="image_to_upload" src="#" class="img-thumbnail float-right" width="80px" height="80px">
 </div>
 <div class="form-group">
-    {{ Form::submit('Guardar') }}
+    {{ Form::submit('Guardar', ['class'=>'btn btn-primary']) }}
 </div>
 
 @section('scripts')
@@ -33,23 +34,30 @@
                     $("#slug").val(text);
                 }
             });
+        });
 
-            //codigo para visualizar la imagen linkeada en el campo file (https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded)
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+        //codigo js para visualizar imagen de categoria linkeada para subir al server
+        function readURL(input) {
 
-                    reader.onload = function(e) {
-                        $('#image_to_upload').attr('src', e.target.result);
-                    }
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-                    reader.readAsDataURL(input.files[0]);
+                reader.onload = function(e) {
+                    $("#image_to_upload").attr('src', e.target.result);
                 }
-            }
-            $("#image_path").change(function() {
-                readURL(this);
-            });
 
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#image_path").change(function() {
+            readURL(this);
+        });
+
+        //codigo para deseleccionar una imagen de categoria linkeada
+        $("#btn_deseleccionar_img").click(function(){
+            $("#image_path").val("");
+            $("#image_to_upload").attr('src', "#");
         });
     </script>
 @endsection

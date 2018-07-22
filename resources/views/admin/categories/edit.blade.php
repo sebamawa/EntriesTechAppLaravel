@@ -1,0 +1,1 @@
+Editar categoría: {{ $category->name }}
